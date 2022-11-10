@@ -13,6 +13,9 @@
 
 使用 `ildasm` 将 `FiddlerBackendSDK.dll` 转换为 il 文件
 
+然后编辑 il文件，修改下方对应处代码，再通过ilasm将 il文件编译为 dll文件，具体操作百度。
+方法二同理，方法二可以直接反编译修改代码，相对来说更推荐使用方法二。
+
 # 方法二
 使用dnSpy反编译工具，打开dnSpy.exe，打开文件Fiddler.WebUi.dll和 FiddlerBackendSDK.dll 修改对应的代码块
 
@@ -65,7 +68,7 @@ IL_0208:  /* 17   |                  */ ldc.i4.1
 IL_0209:  /* 2A   |                  */ ret
 ```
 
-from
+from ：通过dnSpy反编译的代码，为了代码返回return true；
 ```c#
 public AccountDTO GetBestAccount(UserWithBestAccountDTO user)
 {
