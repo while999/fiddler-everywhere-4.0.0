@@ -40,7 +40,7 @@ Ie.licenseInfo.isTrialAvailable = false
 Ie.licenseInfo.hasValidLicense = true
 ```
 
-![updateUserLicense](pic/main.xxx.js-1.png)
+
 
 ## Fiddler.WebUi.il
 
