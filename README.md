@@ -65,35 +65,25 @@ IL_0208:  /* 17   |                  */ ldc.i4.1
 IL_0209:  /* 2A   |                  */ ret
 ```
 
-![TryOpenElectronMainScript](pic/dll-TryOpenElectronMainScript-1.png)
+from
+```c#
+public AccountDTO GetBestAccount(UserWithBestAccountDTO user)
+{
+	if (user.BestEverywhereAccountId != null)
+	{
+		return user.Accounts.FirstOrDefault((UserAccountDTO x) => x.Id == user.BestEverywhereAccountId.Value);
+	}
+	return null;
+}
+```
+to
+```c#
+public AccountDTO GetBestAccount(UserWithBestAccountDTO user)
+{
+	return user.Accounts.FirstOrDefault((UserAccountDTO x) => true);
+}
+```
 
-删除后大概这个效果：
+## 禁用更新
 
-![TryOpenElectronMainScript](pic/dll-TryOpenElectronMainScript-2.png)
-
-## FiddlerBackendSDK.il
-
-> 如何知道修改此文件？
-> 
-> 这是通过替换验证服务器抓到的数据，操作有点麻烦；
-> 
-> 不过，如果对验证服务器做较为详尽的复现，应该能实现离线化。
-
-
-### method FiddlerBackendSDK.User.UserClient::GetBestAccount
-
-搜索 `UserClient::GetBestAccount`
-
-删除 IL_000d - IL_0020 对应 if 语句
-
-删除 IL_003f - IL_0040 对应 `return null;` 语句
-
-![GetBestAccount](pic/dll-GetBestAccount-1.png)
-
-### method '<>c__DisplayClass18_0'::'<GetBestAccount>b__0'
-
-搜索 `<GetBestAccount>b__0`
-
-删除 IL_0000 - IL_0019 , 在 IL_001e 前插入 `ldc.i4.1`  (即函数体直接返回 `true` )
-
-![GetBestAccount](pic/dll-GetBestAccount-2.png)
+修改 `fiddler/resources/app/out/main.js`，搜索 `e.settingsService.get().autoUpdateSettings.disabled` 替换为 `true||e.settingsService.get().autoUpdateSettings.disabled`
