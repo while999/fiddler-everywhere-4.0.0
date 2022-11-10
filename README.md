@@ -68,6 +68,17 @@ IL_0208:  /* 17   |                  */ ldc.i4.1
 IL_0209:  /* 2A   |                  */ ret
 ```
 
+## FiddlerBackendSDK.il
+
+### method FiddlerBackendSDK.User.UserClient::GetBestAccount
+
+删除 IL_000d - IL_0020 对应 if 语句
+删除 IL_003f - IL_0040 对应 `return null;` 语句
+
+### method '<>c__DisplayClass18_0'::'<GetBestAccount>b__0'
+
+删除 IL_0000 - IL_0019 , 在 IL_001e 前插入 `ldc.i4.1`  (即函数体直接返回 `true` )
+
 from ：通过dnSpy反编译的代码，为了代码返回return true；
 ```c#
 public AccountDTO GetBestAccount(UserWithBestAccountDTO user)
