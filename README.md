@@ -18,6 +18,8 @@
 
 [dnSpy地址](https://github.com/dnSpyEx/dnSpy/releases)
 
+ ![截图](\pic\jt.png)
+
 # 处理
 
 ## main.xxxx.js
